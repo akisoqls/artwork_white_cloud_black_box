@@ -1,0 +1,53 @@
+@font-face {
+  font-family: consola;
+  src: url(../assets/fonts/CONSOLA.woff) format("woff"), url(../assets/fonts/CONSOLA.woff2) format("woff2");
+}
+
+body {
+  font-family: consola, source-han-sans-japanese, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  height: 200vh;
+}
+
+p {
+  color: #1f1f1f;
+}
+
+header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: -1;
+  height: 80vh;
+}
+
+header img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+article {
+  padding: 0 60px;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+section.properties {
+  padding: 0 0 20px 0;
+  min-height: 100px;
+  height: 20vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+section.properties ul li p {
+  line-height: 30px;
+}
+/*# sourceMappingURL=main.css.map */
