@@ -2,6 +2,17 @@
   font-family: consola;
   src: url(../assets/fonts/CONSOLA.woff) format("woff"), url(../assets/fonts/CONSOLA.woff2) format("woff2") ;
 }
+
+$breakpoints: (
+  "sp":"screen and (max-width:768px)"
+) !default;
+
+@mixin mediaquery($breakpoint) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+      @content;
+  }
+}
+
 body{
   font-family: consola, source-han-sans-japanese, sans-serif;
   font-weight: 400;
@@ -15,7 +26,7 @@ header{
   position: sticky;
   top: 0;
   z-index: -1;
-  height: 80vh;
+  height: auto;
   img{
     height: 100%;
     width: 100%;
@@ -26,11 +37,12 @@ article{
   padding: 0 60px;
   background-color: #fff;
   min-height: 100vh;
+  @include mediaquery(sp){
+    padding: 0 20px;
+  }
 }
 section.properties{
-  padding: 0 0 20px 0;
-  min-height: 100px;
-  height: 20vh;
+  padding: 20px 0;
   display: flex;
   align-items: center;
   ul{
@@ -38,6 +50,28 @@ section.properties{
       p{
         line-height: 30px;
       }
+    }
+  }
+}
+section.text{
+  p{}
+  figure{
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vh - 40px);
+    margin: 0 -40px 20px -40px;
+    display: block;
+  }
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  @include mediaquery(sp){
+    figure{
+      max-width: calc(100vw - 20px);
+      max-height: calc(100vh - 20px);
+      margin: 0 -10px 5px -10px;
+      display: block;
     }
   }
 }

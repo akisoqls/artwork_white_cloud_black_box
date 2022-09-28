@@ -25,11 +25,11 @@
 </head>
 
 <body>
-  <header>
+  <header id="eyecatch">
     <img src="./assets/images/dummy.jpg">
   </header>
   <article>
-    <section class="properties">
+    <section class="properties" id="properties">
       <ul>
         <li class="title">
           <p>白い雲、黒い箱</p>
@@ -42,8 +42,17 @@
         </li>
       </ul>
     </section>
-    <section>
-  
+    <script>
+      document.getElementById('eyecatch').style.height = `${window.innerHeight - document.getElementById('properties').clientHeight}px`
+    </script>
+    <section class="text">
+      <figure>
+        <img src="./assets/images/dummy.jpg" alt="">
+      </figure>
+      <figure>
+        <img src="./assets/images/dummy.jpg" alt="">
+      </figure>
+      <p></p>
     </section>
   </article>
 </body>
