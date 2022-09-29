@@ -20,7 +20,19 @@ body{
   height: 200vh;
 }
 p{
-  color: #1f1f1f;
+  color: #1f1f3f;
+  font-size: 20px;
+  a{
+    color: #3f3f5f;
+    text-decoration: none;
+    border-bottom: 4px solid #3f3f5f;
+    &:hover{
+      color: #ffffff;
+      background: #3f3f5f;
+      padding: 4px 0 0 0;
+      border-bottom: 0px solid #3f3f5f00;
+    }
+  }
 }
 header{
   position: sticky;
@@ -42,31 +54,46 @@ article{
   }
 }
 section.properties{
-  padding: 20px 0;
+  padding: 60px 0;
   display: flex;
   align-items: center;
   ul{
     li{
       p{
         line-height: 30px;
+        font-size: 20px;
+      }
+    }
+  }
+  @include mediaquery(sp){
+    padding: 20px 0;
+    ul{
+      li{
+        p{
+          line-height: 24px;
+          font-size: 14px;
+        }
       }
     }
   }
 }
 section.text{
+  margin: 20px 0 0 0;
   padding: 0 0 100px 0;
   p{
-    margin: 0 auto 20px auto;
-    max-width: 600px;
+    margin: 0 auto 60px auto;
   }
   figure{
-    width: calc(100vw - 40px);
-    height: calc(100vh - 40px);
-    margin: 0 -40px 20px -40px;
+    // width: calc(100vw - 40px);
+    // height: calc(100vh - 40px);
+    // margin: 0 -40px 60px -40px;
+    margin: 0 0 60px 0;
+
     display: block;
     img{
       width: 100%;
       height: 100%;
+      max-height: calc(100vh - 40px);
       object-fit: contain;
     }
   }
@@ -76,18 +103,49 @@ section.text{
     margin: 0 auto;
     max-width: calc(100vw - 40px);
     max-height: calc(100vh - 40px);
-    margin: 0 auto 20px auto;
+    margin: 0 auto 60px auto;
     display: block;
   }
+  section{
+    max-width: 800px;
+    margin: 120px auto 40px auto;
+    section{
+      margin: 0 0 40px 0;
+      p{
+        text-indent: 1rem;
+        text-align: justify;
+        line-height: 40px;
+        margin: 0 0 0px 0;
+      }
+    }
+  }
   @include mediaquery(sp){
+    padding: 0 0 40px 0;
+    p{
+      margin: 0 auto 30px auto;
+    }
     figure{
       max-width: none;
       width: calc(100vw - 20px);
-      margin: 0 -10px 5px -10px;
+      margin: 0 -10px 20px -10px;
       display: block;
+      img{
+        // max-height: calc(100vh - 340px);
+      }
     }
     iframe{
       display: none;
+    }
+    section{
+      margin: 60px auto 30px auto;
+      section{
+        margin: 0 0 30px 0;
+        p{
+          margin: 0 0 0px 0;
+          line-height: 30px;
+          font-size: 14px;
+        }
+      }
     }
   }
 }
