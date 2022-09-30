@@ -87,6 +87,7 @@ section.text {
 
 section.text p {
   margin: 0 auto 60px auto;
+  word-break: break-all;
 }
 
 section.text figure {

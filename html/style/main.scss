@@ -82,6 +82,7 @@ section.text{
   padding: 0 0 100px 0;
   p{
     margin: 0 auto 60px auto;
+    word-break: break-all;
   }
   figure{
     // width: calc(100vw - 40px);
