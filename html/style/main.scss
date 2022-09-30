@@ -84,13 +84,14 @@ section.text{
     margin: 0 auto 60px auto;
     word-break: break-all;
   }
+  div,
   figure{
     // width: calc(100vw - 40px);
     // height: calc(100vh - 40px);
     // margin: 0 -40px 60px -40px;
     margin: 0 0 60px 0;
-
     display: block;
+    iframe,
     img{
       width: 100%;
       height: 100%;
@@ -98,15 +99,7 @@ section.text{
       object-fit: contain;
     }
   }
-  iframe{
-    width: 500px;
-    height: 960px;
-    margin: 0 auto;
-    max-width: calc(100vw - 40px);
-    max-height: calc(100vh - 40px);
-    margin: 0 auto 60px auto;
-    display: block;
-  }
+  
   section{
     max-width: 800px;
     margin: 120px auto 40px auto;
@@ -125,17 +118,12 @@ section.text{
     p{
       margin: 0 auto 30px auto;
     }
+    div,
     figure{
       max-width: none;
       width: calc(100vw - 20px);
       margin: 0 -10px 20px -10px;
       display: block;
-      img{
-        // max-height: calc(100vh - 340px);
-      }
-    }
-    iframe{
-      display: none;
     }
     section{
       margin: 60px auto 30px auto;
