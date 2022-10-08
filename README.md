@@ -1,4 +1,26 @@
 # 白い雲、黒い箱
+
+## outline
+2022年  
+ヘリウムガスの入った風船、M5stamp pico、スピーカー、LED、ATMEGA328P、ウェブサイト
+
+![作品写真1](./web_archive/html/assets/images/_DSC0598-2.jpg)
+
+![作品写真2](./web_archive/html/assets/images/_DSC0553.jpg)
+
+![作品写真3](./web_archive/html/assets/images/_DSC0726.jpg)
+
+![作品写真4](./web_archive/html/assets/images/_DSC0609-crop.jpg)
+
+![作品写真5](./web_archive/html/assets/images/_DSC9868.jpg)
+
+![作品写真6](./web_archive/html/assets/images/_DSC0416-crop.jpg)
+
+![作品写真7](./web_archive/html/assets/images/_DSC0616.jpg)
+
+![作品写真8](./web_archive/html/assets/images/_DSC0700.jpg)
+
+## text
 この作品は「クラウド」を探す作品である。
 
 まず鑑賞者は任意の場所でこの作品に付属するウェブサイト (http://159.28.100.68/) のURLを受け取る。ウェブサイトはグローバルIPアドレスを持っているこの作品から配信され、そこにはクラウドコンピューティングにまつわる詩やサーバーサイドエンジニアによる手記や雲の絵、また、このウェブサイトの配信元にあたる「クラウド」の座標や地図が掲載されている。
