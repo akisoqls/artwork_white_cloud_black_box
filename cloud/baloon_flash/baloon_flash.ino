@@ -8,7 +8,7 @@ void setup() {
 }
 
 void loop() {
-   while(Serial.available()){
+  while(Serial.available()){
     for(int j = 0; j < 7; j++){
       digitalWrite(leds[j], LOW);
     }

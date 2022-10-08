@@ -1,76 +1,3 @@
-#include <WiFi.h>
-#include <FastLED.h>
-
-int melo = 60;
-int spIn = 25;
-int gnd = 22;
-int vout = 21;
-
-#define NUM_LEDS 1
-#define DATA_PIN 27
-
-CRGB leds[NUM_LEDS];
-
-const char* ssid     = "nyago";
-const char* password = "88888888";
-
-int port = 80;
-
-const IPAddress ip(192, 168, 101, 4);
-const IPAddress subnet(255, 255, 255, 0);
-
-WiFiServer server(port);
-
-void setup(){
-  pinMode(spIn, OUTPUT);
-  pinMode(vout, OUTPUT);
-  pinMode(gnd, OUTPUT);
-  digitalWrite(vout, HIGH);
-  digitalWrite(gnd, LOW);
-
-  FastLED.addLeds<SK6812, DATA_PIN, RGB>(leds, NUM_LEDS);
-
-  Serial.begin(115200);
-  delay(10);
-
-  if (!WiFi.config(ip, ip, subnet)) {
-    Serial.println("Failed to configure");
-  }
-
-  WiFi.begin(ssid, password);
-
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-
-  Serial.println("");
-  Serial.println("WiFi connected.");
-  Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());
-  Serial.print("port: ");
-  Serial.println(port);
-
-  server.begin();
-
-  for (int i = 0; i < 2; i++) {
-    for (uint16_t count = 0; count < 30; count++) {
-      digitalWrite(spIn, HIGH);
-      delayMicroseconds(460);
-      digitalWrite(spIn, LOW);
-      delayMicroseconds(460);
-    }
-    leds[0] = 0xff0000;
-    FastLED.show();
-    delay(50);
-    leds[0] = 0x000000;
-    FastLED.show();
-  }
-}
-
-int value = 0;
-
-const char* html = R"(
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,35 +26,35 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-  display: block;
+	display: block;
 }
 body {
-  line-height: 1;
+	line-height: 1;
 }
 ol, ul {
-  list-style: none;
+	list-style: none;
 }
 blockquote, q {
-  quotes: none;
+	quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-  content: '';
-  content: none;
+	content: '';
+	content: none;
 }
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 body{
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -326,7 +253,7 @@ nav p.next{
         </p>
         <input placeholder="type something in">
         <script>
-          const t=(d)=>fetch(`?key=${d.key}`)
+          const t=(e)=>fetch(`?key=${e.key}`)
           window.addEventListener('keydown', e=>t(e), true)
         </script>
         <p>
@@ -444,6 +371,7 @@ window.addEventListener('keydown', e=>t(e), true)
     </main>
     <script>
       const pager =(page)=>{
+        console.log(page)
         document.querySelector(`article.active`).classList.remove('active')
         document.querySelector(`article.page${String(page)}`).classList.add('active')
         window.scrollTo(0,0)
@@ -451,66 +379,3 @@ window.addEventListener('keydown', e=>t(e), true)
     </script>
   </body>
 </html>
-)";
-
-void loop(){
-  WiFiClient client = server.available();
-  if (client) {
-    String currentLine = "";
-    while (client.connected()) {
-      if (client.available()) {
-        char c = client.read();
-        Serial.write(c);
-        if (c == '\n') {
-          if (currentLine.length() == 0) {
-            client.println("HTTP/1.1 200 OK");
-            client.println("Content-type:text/html");
-            client.println();
-            client.print(html);
-            client.println();
-            for(int i=0; i<7; i++){
-              for(uint16_t count=0; count<30; count++){
-                digitalWrite(spIn, HIGH);
-                delayMicroseconds(460);
-                digitalWrite(spIn, LOW);
-                delayMicroseconds(460);
-              }
-              Serial.write(i);
-              delay(50);
-            }
-            break;
-            } else {
-            currentLine = "";
-          }
-        } else if (c != '\r') {
-          currentLine += c;
-        }
-        if (currentLine.startsWith("GET /?key=")) {
-          // do nothing
-          break;
-        }else if (currentLine.endsWith("GET /is_exists")) {
-          client.println("HTTP/1.1 200 OK");
-          client.println("Content-type:text/plain");
-          client.println();
-          client.println(true);
-          for(int i=0; i<7; i++){
-            for(uint16_t count=0; count<30; count++){
-              digitalWrite(spIn, HIGH);
-              delayMicroseconds(460);
-              digitalWrite(spIn, LOW);
-              delayMicroseconds(460);
-            }
-            Serial.write(i);
-            delay(50);
-          }
-          break;
-        }
-      }
-    }
-    client.stop();
-  }
-}
-
-/*
- * reference: WiFi Web Server LED Blink https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/examples/SimpleWiFiServer/SimpleWiFiServer.ino
- */
